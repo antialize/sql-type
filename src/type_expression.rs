@@ -434,7 +434,10 @@ pub(crate) fn type_expression<'a>(
         }
         Expression::GroupConcat { expr, .. } => {
             type_expression(typer, expr, flags.without_values(), BaseType::Any);
-            FullType::new(BaseType::String, true)
+            // GROUP_CONCAT is NULL if the expression only contains NULLs (or is empty).
+            // If we are concatenating a non-NULL non-empty group,
+            // then this is never NULL, but to be conservative we just always type GROUP_CONCAT as possibly NULL.
+            FullType::new(BaseType::String, false)
         }
         Expression::Variable {
             variable,
