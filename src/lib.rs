@@ -266,7 +266,7 @@ mod tests {
     };
 
     struct N<'a>(Option<&'a str>);
-    impl<'a> alloc::fmt::Display for N<'a> {
+    impl alloc::fmt::Display for N<'_> {
         fn fmt(&self, f: &mut alloc::fmt::Formatter<'_>) -> alloc::fmt::Result {
             if let Some(v) = self.0 {
                 v.fmt(f)
@@ -277,7 +277,7 @@ mod tests {
     }
 
     struct N2<'a>(Option<Identifier<'a>>);
-    impl<'a> alloc::fmt::Display for N2<'a> {
+    impl alloc::fmt::Display for N2<'_> {
         fn fmt(&self, f: &mut alloc::fmt::Formatter<'_>) -> alloc::fmt::Result {
             if let Some(v) = &self.0 {
                 v.fmt(f)

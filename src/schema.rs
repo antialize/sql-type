@@ -607,7 +607,7 @@ pub fn parse_schemas<'a>(
                             alter_column_action,
                             ..
                         } => {
-                            let c = match e.get_column_mut(&column.value) {
+                            let c = match e.get_column_mut(column.value) {
                                 Some(v) => v,
                                 None => {
                                     issues

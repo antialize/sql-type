@@ -87,7 +87,7 @@ pub enum Type<'a> {
     Null,
 }
 
-impl<'a> Display for Type<'a> {
+impl Display for Type<'_> {
     fn fmt(&self, f: &mut alloc::fmt::Formatter<'_>) -> alloc::fmt::Result {
         match self {
             Type::Args(t, a) => {
@@ -135,7 +135,7 @@ impl<'a> Display for Type<'a> {
     }
 }
 
-impl<'a> Type<'a> {
+impl Type<'_> {
     /// Compute the canonical base type
     pub fn base(&self) -> BaseType {
         match self {
@@ -160,7 +160,7 @@ impl<'a> Type<'a> {
     }
 }
 
-impl<'a> From<BaseType> for Type<'a> {
+impl From<BaseType> for Type<'_> {
     fn from(t: BaseType) -> Self {
         Type::Base(t)
     }
@@ -201,7 +201,7 @@ impl<'a> core::ops::Deref for FullType<'a> {
     }
 }
 
-impl<'a> Display for FullType<'a> {
+impl Display for FullType<'_> {
     fn fmt(&self, f: &mut alloc::fmt::Formatter<'_>) -> alloc::fmt::Result {
         self.t.fmt(f)?;
         if self.list_hack {
