@@ -35,7 +35,7 @@ pub struct SelectTypeColumn<'a> {
     pub span: Span,
 }
 
-impl<'a> Spanned for SelectTypeColumn<'a> {
+impl Spanned for SelectTypeColumn<'_> {
     fn span(&self) -> Span {
         self.span.span()
     }
@@ -47,7 +47,7 @@ pub(crate) struct SelectType<'a> {
     pub select_span: Span,
 }
 
-impl<'a> Spanned for SelectType<'a> {
+impl Spanned for SelectType<'_> {
     fn span(&self) -> Span {
         self.columns
             .opt_span()
