@@ -243,7 +243,7 @@ pub(crate) struct TyperStack<'a, 'b, 'c, V, D: FnOnce(&mut Typer<'a, 'b>, V)> {
     value_drop: Option<(V, D)>,
 }
 
-impl<'a, 'b, 'c, V, D: FnOnce(&mut Typer<'a, 'b>, V)> Drop for TyperStack<'a, 'b, 'c, V, D> {
+impl<'a, 'b, V, D: FnOnce(&mut Typer<'a, 'b>, V)> Drop for TyperStack<'a, 'b, '_, V, D> {
     fn drop(&mut self) {
         if let Some((v, d)) = self.value_drop.take() {
             (d)(self.typer, v)
